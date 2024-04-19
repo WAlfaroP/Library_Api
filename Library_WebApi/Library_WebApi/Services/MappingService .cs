@@ -31,5 +31,15 @@ namespace Library_WebApi.Services
                 Copies = book.Copies
             };
         }
+        public DeleteBookResultDto MapBookToDeleteToDto(Book book, bool isDeleted)
+        {
+            return new DeleteBookResultDto
+            {
+                IsDeleted = isDeleted,
+                Title = book.Title,
+                Author = book.Author,
+                PublicationDate = book.PublicationDate
+            };
+        }
     }
 }

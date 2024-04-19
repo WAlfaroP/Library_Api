@@ -62,6 +62,28 @@ namespace Library_WebApi.Repositories
                 throw new Exception("An error occurred while attempting to add a new book to the database.", ex);
             }
         }
+        public async Task<DeleteBookResultDto> DeleteBookAsync(int id)
+        {
+            try
+            {
+                var bookToDelete = await GetBookByIdAsync(id);
+
+                if (bookToDelete == null)
+                {
+                    throw new Exception($"Book with ID {id} not found.");
+                }
+
+                _context.Remove(bookToDelete);
+                await _context.SaveChangesAsync();
+
+                return _mappingService.MapBookToDeleteToDto(bookToDelete, true);
+
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("An error occurred while attempting to delete the book to the database.", ex);
+            }
+        }
 
         private async Task<bool> BookExistsAsync(string title, string author, DateTime publicationDate)
         {
@@ -70,6 +92,10 @@ namespace Library_WebApi.Repositories
                                   string.Equals(b.Title, title, StringComparison.OrdinalIgnoreCase) &&
                                   string.Equals(b.Author, author, StringComparison.OrdinalIgnoreCase) &&
                                   b.PublicationDate.Date == publicationDate.Date);
+        }
+        private async Task<Book> GetBookByIdAsync(int id)
+        {
+            return await _context.Books.FirstOrDefaultAsync(x => x.Id == id);
         }
     }
 }

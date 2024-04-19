@@ -8,5 +8,6 @@ namespace Library_WebApi.Interfaces
     {
         BookDto MapBookToDto(Book book);
         NewBookDto MapNewBookToDto(AddBookCommand command);
+        DeleteBookResultDto MapBookToDeleteToDto(Book book, bool isDeleted);
     }
 }

@@ -45,5 +45,21 @@ namespace Library_WebApi.Controllers
                 return StatusCode(StatusCodes.Status500InternalServerError, $"An error occurred while processing your request: {ex.Message}");
             }
         }
+
+        [HttpDelete]
+        [Route("DeleteBook/{id}")]
+        public async Task<ActionResult<DeleteBookResultDto>> DeleteBook(int id)
+        {
+            try
+            {
+                var result = await _mediator.Send(new DeleteBookCommand { BookId = id });
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+
+        }
     }
 }
