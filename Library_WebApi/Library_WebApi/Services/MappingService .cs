@@ -1,4 +1,5 @@
-﻿using Library_WebApi.Dtos;
+﻿using Library_WebApi.Commands;
+using Library_WebApi.Dtos;
 using Library_WebApi.Interfaces;
 using Library_WebApi.Models;
 
@@ -17,6 +18,17 @@ namespace Library_WebApi.Services
                 PublicationDate = book.PublicationDate,
                 Copies = book.Copies,
                 BorrowedCopies = book.BorrowedCopies
+            };
+        }
+        public NewBookDto MapNewBookToDto(AddBookCommand book)
+        {
+            return new NewBookDto
+            {
+                Title = book.Title,
+                Author = book.Author,
+                Genre = book.Genre,
+                PublicationDate = book.PublicationDate,
+                Copies = book.Copies
             };
         }
     }
