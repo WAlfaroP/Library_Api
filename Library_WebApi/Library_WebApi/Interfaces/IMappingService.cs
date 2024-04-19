@@ -6,5 +6,6 @@ namespace Library_WebApi.Interfaces
 {
     public interface IMappingService
     {
+        BookDto MapBookToDto(Book book);
     }
 }

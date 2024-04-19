@@ -1,8 +1,23 @@
-﻿using Library_WebApi.Interfaces;
+﻿using Library_WebApi.Dtos;
+using Library_WebApi.Interfaces;
+using Library_WebApi.Models;
 
 namespace Library_WebApi.Services
 {
     public class MappingService : IMappingService 
-    {   
+    {
+        public BookDto MapBookToDto(Book book)
+        {
+            return new BookDto
+            {
+                BookId = book.Id,
+                Title = book.Title,
+                Author = book.Author,
+                Genre = book.Genre,
+                PublicationDate = book.PublicationDate,
+                Copies = book.Copies,
+                BorrowedCopies = book.BorrowedCopies
+            };
+        }
     }
 }

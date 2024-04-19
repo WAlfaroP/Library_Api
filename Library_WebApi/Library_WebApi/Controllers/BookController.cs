@@ -1,4 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Library_WebApi.Dtos;
+using Library_WebApi.Queries;
+using MediatR;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Library_WebApi.Controllers
 {
@@ -6,9 +9,25 @@ namespace Library_WebApi.Controllers
     [ApiController]
     public class BookController : ControllerBase
     {
-        public BookController()
+        private readonly IMediator _mediator;
+        public BookController(IMediator mediator)
         {
+            _mediator = mediator;
+        }
 
+        [HttpGet]
+        [Route("GetAllBooks")]
+        public async Task<ActionResult<IEnumerable<BookDto>>> GetAllBooks()
+        {
+            try
+            {
+                var books = await _mediator.Send(new GetAllBooksQuery());
+                return Ok(books);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, $"An error occurred while processing your request: {ex.Message}");
+            }
         }
     }
 }
