@@ -41,5 +41,29 @@ namespace Library_WebApi.Services
                 PublicationDate = book.PublicationDate
             };
         }
+        public BorrowBookResultDto MapBookToBorrowToDto(Book book, bool IsBorrowSuccess)
+        {
+            return new BorrowBookResultDto
+            {
+                IsBorrowSuccess = IsBorrowSuccess,
+                Title = book.Title,
+                Author = book.Author,
+                Genre = book.Genre,
+                PublicationDate = book.PublicationDate,
+                UpdatedCopies = book.Copies
+            };
+        }
+        public ReturnBookResultDto MapBookToReturnToDto(Book book, bool isReturnSuccess)
+        {
+            return new ReturnBookResultDto
+            {
+                IsReturnSuccess = isReturnSuccess,
+                Title = book.Title,
+                Author = book.Author,
+                Genre = book.Genre,
+                PublicationDate = book.PublicationDate,
+                UpdatedCopies = book.Copies
+            };
+        }
     }
 }

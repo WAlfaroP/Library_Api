@@ -16,7 +16,24 @@ namespace Library_WebApi.Handlers.CommandHandlers
 
         public async Task<BorrowBookResultDto> Handle(BorrowBookCommand request, CancellationToken cancellationToken)
         {
-            return new BorrowBookResultDto { };
+            try
+            {
+                if (request == null)
+                {
+                    throw new ArgumentNullException(nameof(request), "The BorrowBookCommand cannot be null.");
+                }
+
+                if (request.BookId <= 0)
+                {
+                    throw new ArgumentException("Invalid BookId provided in the BorrowBookCommand.");
+                }
+
+                return await _bookRepository.BorrowBookAsync(request.BookId);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("An error occurred while attempting to borrow the book.", ex);
+            }
         }
     }
 }

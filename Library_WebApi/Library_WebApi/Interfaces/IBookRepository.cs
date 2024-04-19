@@ -8,5 +8,7 @@ namespace Library_WebApi.Interfaces
         Task<IEnumerable<BookDto>> GetAllBooksAsync();
         Task<NewBookDto> AddBookAsync(AddBookCommand command);
         Task<DeleteBookResultDto> DeleteBookAsync(int id);
+        Task<BorrowBookResultDto> BorrowBookAsync(int id);
+        Task<ReturnBookResultDto> ReturnBookAsync(int id);
     }
 }

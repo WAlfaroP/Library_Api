@@ -59,7 +59,36 @@ namespace Library_WebApi.Controllers
             {
                 return BadRequest(ex.Message);
             }
+        }
 
+        [HttpPost]
+        [Route("BorrowBook/{id}")]
+        public async Task<ActionResult<BorrowBookResultDto>> BorrowBook(int id)
+        {
+            try
+            {
+                var result = await _mediator.Send(new BorrowBookCommand { BookId = id });
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [HttpPost]
+        [Route("ReturnBook/{id}")]
+        public async Task<ActionResult<ReturnBookResultDto>> ReturnBook(int id)
+        {
+            try
+            {
+                var result = await _mediator.Send(new ReturnBookCommand { BookId = id });
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
     }
 }
