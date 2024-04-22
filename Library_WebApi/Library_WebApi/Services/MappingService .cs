@@ -20,7 +20,7 @@ namespace Library_WebApi.Services
                 BorrowedCopies = book.BorrowedCopies
             };
         }
-        public NewBookDto MapNewBookToDto(AddBookCommand book)
+        public NewBookDto MapNewBookToDto(AddBookCommand book, bool isBookExists)
         {
             return new NewBookDto
             {
@@ -28,7 +28,8 @@ namespace Library_WebApi.Services
                 Author = book.Author,
                 Genre = book.Genre,
                 PublicationDate = book.PublicationDate,
-                Copies = book.Copies
+                Copies = book.Copies,
+                IsBookExists = isBookExists
             };
         }
         public DeleteBookResultDto MapBookToDeleteToDto(Book book, bool isDeleted)

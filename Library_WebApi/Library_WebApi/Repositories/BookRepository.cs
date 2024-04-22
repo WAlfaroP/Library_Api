@@ -41,7 +41,7 @@ namespace Library_WebApi.Repositories
 
                 if (bookExists)
                 {
-                    throw new ArgumentException("The book already exists.");
+                    return _mappingService.MapNewBookToDto(command,true);
                 }
 
                 _context.Books.Add(new Book
@@ -55,7 +55,7 @@ namespace Library_WebApi.Repositories
 
                 await _context.SaveChangesAsync();
 
-                return _mappingService.MapNewBookToDto(command);
+                return _mappingService.MapNewBookToDto(command,false);
             }
             catch (Exception ex)
             {
