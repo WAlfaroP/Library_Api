@@ -32,12 +32,14 @@ builder.Services.AddScoped<IBookRepository, BookRepository>();
 builder.Services.AddScoped<IMappingService, MappingService>();
 
 // Configure CORS policy to allow requests from the React app
+var allowedOrigins = builder.Configuration.GetValue<string>("AllowedOrigins");
+
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowReactApp", builder =>
     {
         // Allow requests from the specified origin
-        builder.WithOrigins("http://localhost:5173")
+        builder.WithOrigins(allowedOrigins)
                .AllowAnyMethod()
                .AllowAnyHeader();
     });
