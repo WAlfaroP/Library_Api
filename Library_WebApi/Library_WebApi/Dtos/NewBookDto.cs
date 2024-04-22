@@ -7,5 +7,6 @@
         public string Genre { get; set; }
         public DateTime? PublicationDate { get; set; }
         public int Copies { get; set; }
+        public bool IsBookExists { get; set; }
     }
 }

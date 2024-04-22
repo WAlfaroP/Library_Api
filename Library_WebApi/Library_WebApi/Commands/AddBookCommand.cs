@@ -20,5 +20,7 @@ namespace Library_WebApi.Commands
         public DateTime PublicationDate { get; set; }
 
         public int Copies { get; set; } = 1;
+
+        public bool IsBookExists { get; set; } = false;
     }
 }
