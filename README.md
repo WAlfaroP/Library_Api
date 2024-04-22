@@ -14,7 +14,7 @@ Open and run the solution of the 'Library_WebApi' project.
 
 - Change 'Library_WebApi' Application Port (BE):
  
-   Find the .env file in the Library-Page folder (FE).
+   Find the .env file in the Library_Page Repository (FE).
    Modify the port in the variable named REACT_APP_API_BASE_URL.
 
 **Remember, it's not recommended to commit environment variables like .env to version control due to security reasons. However, for this exercise, I've made an exception and included it.**
