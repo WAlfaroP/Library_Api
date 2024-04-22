@@ -16,7 +16,14 @@ namespace Library_WebApi.Handlers.Query_Handlers
 
         public async Task<IEnumerable<BookDto>> Handle(GetAllBooksQuery request, CancellationToken cancellationToken)
         {
-            return new List<BookDto> { };
+            try
+            {
+                return await _bookRepository.GetAllBooksAsync();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("An error occurred while attempting to fetch books.", ex);
+            }
         }
     }
 }

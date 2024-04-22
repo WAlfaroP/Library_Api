@@ -18,3 +18,7 @@
 *.nupkg
 
 obj/
+
+Library_WebApi/Library_WebApi/obj/Debug/net8.0/Library_WebApi.sourcelink.json
+Library_WebApi/Library_WebApi/obj/Debug/net8.0/Library_WebApi.AssemblyInfoInputs.cache
+Library_WebApi/Library_WebApi/obj/Debug/net8.0/Library_WebApi.AssemblyInfo.cs

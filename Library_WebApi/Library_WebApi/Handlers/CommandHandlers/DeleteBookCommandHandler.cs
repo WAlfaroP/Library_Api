@@ -16,7 +16,24 @@ namespace Library_WebApi.Handlers.CommandHandlers
 
         public async Task<DeleteBookResultDto> Handle(DeleteBookCommand request, CancellationToken cancellationToken)
         {
-            return new DeleteBookResultDto { };
+            try
+            {
+                if (request == null)
+                {
+                    throw new ArgumentNullException(nameof(request), "The DeleteBookCommand cannot be null.");
+                }
+
+                if (request.BookId <= 0)
+                {
+                    throw new Exception("Invalid BookId provided in the DeleteBookCommand.");
+                }
+
+                return await _bookRepository.DeleteBookAsync(request.BookId);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("An error occurred while attempting to delete the book.", ex);
+            }
         }
     }
 }

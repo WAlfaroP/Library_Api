@@ -16,7 +16,24 @@ namespace Library_WebApi.Handlers.CommandHandlers
 
         public async Task<ReturnBookResultDto> Handle(ReturnBookCommand request, CancellationToken cancellationToken)
         {
-            return new ReturnBookResultDto { };
+            try
+            {
+                if (request == null)
+                {
+                    throw new ArgumentNullException(nameof(request), "The ReturnBookCommand cannot be null.");
+                }
+
+                if (request.BookId <= 0)
+                {
+                    throw new ArgumentException("Invalid BookId provided in the ReturnBookCommand.");
+                }
+
+                return await _bookRepository.ReturnBookAsync(request.BookId);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("An error occurred while attempting to return the book.", ex);
+            }
         }
     }
 }
