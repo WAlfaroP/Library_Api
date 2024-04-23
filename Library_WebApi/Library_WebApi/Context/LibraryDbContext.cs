@@ -10,6 +10,6 @@ namespace Library_WebApi.Context
 
         }
 
-        public DbSet<Book> Books { get; set; }
+        public virtual DbSet<Book> Books { get; set; }
     }
 }
